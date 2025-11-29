@@ -101,8 +101,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
     activeFilter === 'All' ? projects : projects.filter((p) => p.category === activeFilter);
 
   return (
-    // Updated BG to #2E2623, Text to #CBD2A4, Selection to #52640a
-    <div className="w-full pt-24 min-h-screen bg-[#2E2623] text-[#CBD2A4] selection:bg-[#52640a] selection:text-white pb-24">
+    // Updated BG to #1c1812, Selection to #829056
+    <div className="w-full pt-24 min-h-screen bg-[#1c1812] text-[#CBD2A4] selection:bg-[#829056] selection:text-white pb-24">
      
       {/* Injecting theme fonts locally */}
       <style>{`
@@ -115,12 +115,12 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-20 space-y-4">
-          {/* Olive Green Accent */}
-          <span className="text-[#52640a] font-body text-xs uppercase tracking-[0.2em] font-bold">Our Work</span>
+          {/* Accent: #829056 */}
+          <span className="text-[#829056] font-body text-xs uppercase tracking-[0.2em] font-bold">Our Work</span>
           <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl text-white">Selected Portfolio</h1>
-          {/* Olive Green Line */}
-          <div className="w-24 h-[1px] bg-[#52640a]/50 my-6"></div>
-          {/* Sage Beige Text */}
+          {/* Divider: #829056 */}
+          <div className="w-24 h-[1px] bg-[#829056]/50 my-6"></div>
+          {/* Text: #CBD2A4 */}
           <p className="text-[#CBD2A4]/80 text-lg max-w-xl font-body font-light leading-relaxed">
             A curation of bespoke living spaces and architectural endeavors that embody our philosophy of timeless elegance.
           </p>
@@ -134,13 +134,13 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               onClick={() => setActiveFilter(category)}
               className={`text-sm font-body uppercase tracking-[0.15em] py-2 relative group transition-colors duration-300
                 ${activeFilter === category
-                  ? 'text-[#52640a] font-semibold'
+                  ? 'text-[#829056] font-semibold'
                   : 'text-[#CBD2A4]/60 hover:text-[#CBD2A4]'
                 }`}
             >
               {category}
-              {/* Animated Underline in Olive Green */}
-              <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-[#52640a] origin-left transform transition-transform duration-300 ease-out ${activeFilter === category ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'}`}></span>
+              {/* Animated Underline in #829056 */}
+              <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-[#829056] origin-left transform transition-transform duration-300 ease-out ${activeFilter === category ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'}`}></span>
             </button>
           ))}
         </div>
@@ -156,14 +156,14 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 scale-100 opacity-90 group-hover:opacity-100"
                 />
-                {/* Subtle Olive overlay on hover */}
-                <div className="absolute inset-0 bg-[#52640a]/0 transition-colors duration-500 group-hover:bg-[#52640a]/10" />
+                {/* Subtle Accent overlay on hover */}
+                <div className="absolute inset-0 bg-[#829056]/0 transition-colors duration-500 group-hover:bg-[#829056]/10" />
               </div>
 
               {/* Project Details */}
               <div className="flex flex-col items-start pl-1">
-                {/* Category in Olive Green */}
-                <span className="text-[#52640a] text-xs font-body tracking-widest uppercase mb-3 inline-block font-bold">
+                {/* Category in #829056 */}
+                <span className="text-[#829056] text-xs font-body tracking-widest uppercase mb-3 inline-block font-bold">
                   {project.category}
                 </span>
                 

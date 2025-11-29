@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, LayoutTemplate, PenTool, Home } from 'lucide-react';
 
 // --- Color Palette ---
-// Main Background: #2E2623 (Dark Espresso)
-// Contrast Background: #231C1A (Almost Black - for "Selected Works")
+// Main Background: #1c1812 (Very Dark Brown/Black)
+// Contrast Background: #14110d (Darker Black - for "Selected Works" & Hovers)
 // Text/Accent: #CBD2A4 (Sage Beige)
-// Highlight Accent: #52640a (Olive Green - for "Craftsmenship" & Buttons)
+// Highlight Accent: #829056 (Muted Olive - for "Craftsmenship" & Buttons)
 
 // --- Animation Variants ---
 const fadeInUp = {
@@ -39,8 +39,8 @@ const imageReveal = {
 
 const AtelierPage = () => {
   return (
-    // Fixed Background Color: #2E2623
-    <div className="bg-[#2E2623] min-h-screen font-sans text-[#CBD2A4] overflow-x-hidden selection:bg-[#52640a] selection:text-white">
+    // Updated BG: #1c1812, Selection: #829056
+    <div className="bg-[#1c1812] min-h-screen font-sans text-[#CBD2A4] overflow-x-hidden selection:bg-[#829056] selection:text-white">
       
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
@@ -61,8 +61,8 @@ const AtelierPage = () => {
             className="w-full h-full object-cover object-center"
           />
           
-          {/* Static Gradient Overlay matching #2E2623 */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2E2623] via-black/40 to-transparent opacity-90" />
+          {/* Static Gradient Overlay matching #1c1812 */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1812] via-black/40 to-transparent opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-80" />
         </div>
 
@@ -83,7 +83,8 @@ const AtelierPage = () => {
             <motion.h1 variants={fadeInUp} className="font-heading text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-medium text-white drop-shadow-2xl">
               Your Vision <span className="italic text-[#CBD2A4] font-light pr-2"></span> <br />
               Our 
-              <span className="font-bold ml-3 text-[#52640a]">
+              {/* Highlight: #829056 */}
+              <span className="font-bold ml-3 text-[#829056]">
                 Craftsmenship
               </span>
             </motion.h1>
@@ -93,8 +94,9 @@ const AtelierPage = () => {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-5 pt-4 pl-1">
+              {/* Button BG: #829056 */}
               <button 
-                className="group relative bg-[#52640a] text-white px-8 py-3 rounded-full font-body text-xs md:text-sm font-semibold tracking-wide overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
+                className="group relative bg-[#829056] text-white px-8 py-3 rounded-full font-body text-xs md:text-sm font-semibold tracking-wide overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Start Your Project <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -109,29 +111,19 @@ const AtelierPage = () => {
           </motion.div>
         </div>
 
-        {/* Stats Bar */}
+        {/* Stats Bar - Matches #1c1812 */}
         <motion.div 
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-0 left-0 right-0 border-t border-[#CBD2A4]/10 bg-[#2E2623]/95 backdrop-blur-sm z-20"
+          className="absolute bottom-0 left-0 right-0 border-t border-[#CBD2A4]/10 bg-[#1c1812]/95 backdrop-blur-sm z-20"
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-16 py-6 md:py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               <StatItem number="250+" label="Projects Completed" />
               <StatItem number="15+" label="Years Experience" />
               <StatItem number="98%" label="Client Satisfaction" />
-              <div className="hidden md:flex items-center gap-4 border-l border-[#CBD2A4]/20 pl-8 opacity-90">
-                <div className="w-10 h-10 rounded-full bg-[#CBD2A4]/10 flex items-center justify-center text-[#CBD2A4]">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-heading text-lg leading-none text-white">Award Winning</p>
-                  <p className="font-body text-xs text-[#CBD2A4]/60 mt-1">Design Excellence 2024</p>
-                </div>
-              </div>
+              
             </div>
           </div>
         </motion.div>
@@ -150,7 +142,7 @@ const AtelierPage = () => {
 const StatItem = ({ number, label }) => (
   <div className="group cursor-default">
     <h3 className="font-heading text-3xl md:text-5xl text-white mb-1 transition-colors duration-300">
-      <span className="group-hover:text-[#52640a] transition-colors">{number}</span>
+      <span className="group-hover:text-[#829056] transition-colors">{number}</span>
     </h3>
     <p className="font-body text-[10px] md:text-xs uppercase tracking-widest text-[#CBD2A4]/60 group-hover:text-[#CBD2A4] transition-colors">
       {label}
@@ -178,7 +170,8 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-16 max-w-7xl mx-auto bg-[#2E2623] relative z-10">
+    // BG: #1c1812
+    <section className="py-24 px-6 lg:px-16 max-w-7xl mx-auto bg-[#1c1812] relative z-10">
       <motion.div 
         initial="hidden"
         whileInView="visible"
@@ -206,18 +199,20 @@ const ServicesSection = () => {
           <motion.div 
             key={idx} 
             variants={fadeInUp}
-            className="group p-8 border border-[#CBD2A4]/10 bg-[#CBD2A4]/[0.02] hover:bg-[#231C1A] transition-colors duration-500 relative overflow-hidden"
+            // Hover BG: Slightly darker/richer #14110d
+            className="group p-8 border border-[#CBD2A4]/10 bg-[#CBD2A4]/[0.02] hover:bg-[#14110d] transition-colors duration-500 relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-1 h-0 bg-[#52640a] group-hover:h-full transition-all duration-500 ease-out" />
+            {/* Accent Line: #829056 */}
+            <div className="absolute top-0 left-0 w-1 h-0 bg-[#829056] group-hover:h-full transition-all duration-500 ease-out" />
             <div className="mb-6 text-[#CBD2A4]/80 transition-colors relative z-10">
-               <span className="group-hover:text-[#52640a] transition-colors">{service.icon}</span>
+               <span className="group-hover:text-[#829056] transition-colors">{service.icon}</span>
             </div>
             <h3 className="font-heading text-2xl mb-4 text-[#CBD2A4] group-hover:text-white transition-colors relative z-10">{service.title}</h3>
             <p className="font-body text-[#CBD2A4]/60 text-sm leading-relaxed mb-8 group-hover:text-[#CBD2A4]/80 relative z-10">
               {service.desc}
             </p>
             <a href="#" className="relative z-10 inline-flex items-center text-xs uppercase tracking-widest text-[#CBD2A4]/50 transition-colors">
-               <span className="group-hover:text-[#52640a] flex items-center transition-colors">
+               <span className="group-hover:text-[#829056] flex items-center transition-colors">
                  Read More <ArrowRight className="ml-2 w-4 h-4" />
                </span>
             </a>
@@ -230,7 +225,8 @@ const ServicesSection = () => {
 
 const SelectedWorks = () => {
   return (
-    <section className="py-24 bg-[#231C1A] relative z-10">
+    // Contrast BG: #14110d
+    <section className="py-24 bg-[#14110d] relative z-10">
       <div className="px-6 lg:px-16 max-w-7xl mx-auto">
         <motion.div 
            initial="hidden"
@@ -241,7 +237,7 @@ const SelectedWorks = () => {
         >
           <h2 className="font-heading text-4xl md:text-6xl text-white">Selected Works</h2>
           <button className="hidden md:flex items-center gap-2 text-sm font-body uppercase tracking-widest text-[#CBD2A4]/70 hover:text-white transition-colors mt-4 md:mt-0">
-            <span className="hover:text-[#52640a] flex items-center gap-2 transition-colors">
+            <span className="hover:text-[#829056] flex items-center gap-2 transition-colors">
               View All Projects <ArrowRight size={16} />
             </span>
           </button>
@@ -264,13 +260,13 @@ const SelectedWorks = () => {
             <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
           </motion.div>
           <motion.div variants={fadeInUp} className="md:pl-8">
-            <span className="text-xs font-body tracking-widest uppercase text-[#52640a]">Residential</span>
+            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Residential</span>
             <h3 className="font-heading text-white text-4xl mt-3 mb-6">The Obsidian Apartment</h3>
             <p className="font-body text-[#CBD2A4]/70 leading-relaxed mb-8 max-w-md">
               A study in contrast and texture. This project involved transforming a downtown loft into a sanctuary of dark stone, warm wood, and filtered light.
             </p>
-            <button className="flex items-center gap-2 text-sm border-b border-[#CBD2A4]/20 text-[#CBD2A4] pb-1 transition-all hover:border-[#52640a]">
-              <span className="hover:text-[#52640a] flex items-center gap-2 transition-colors">
+            <button className="flex items-center gap-2 text-sm border-b border-[#CBD2A4]/20 text-[#CBD2A4] pb-1 transition-all hover:border-[#829056]">
+              <span className="hover:text-[#829056] flex items-center gap-2 transition-colors">
                 Explore Project <ArrowUpRight size={16} />
               </span>
             </button>
@@ -286,13 +282,13 @@ const SelectedWorks = () => {
            className="grid md:grid-cols-2 gap-12 items-center group"
         >
           <motion.div variants={fadeInUp} className="order-2 md:order-1 md:pr-8 md:text-right flex flex-col items-start md:items-end">
-            <span className="text-xs font-body tracking-widest uppercase text-[#52640a]">Commercial</span>
+            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Commercial</span>
             <h3 className="font-heading text-white text-4xl mt-3 mb-6">Aesop's Gallery</h3>
             <p className="font-body text-[#CBD2A4]/70 leading-relaxed mb-8 max-w-md">
               Designed to evoke the feeling of an ancient apothecary. We utilized raw plaster and reclaimed oak to create a tactile retail experience.
             </p>
-            <button className="flex items-center gap-2 text-sm border-b border-[#CBD2A4]/20 text-[#CBD2A4] pb-1 transition-all hover:border-[#52640a]">
-              <span className="hover:text-[#52640a] flex items-center gap-2 transition-colors">
+            <button className="flex items-center gap-2 text-sm border-b border-[#CBD2A4]/20 text-[#CBD2A4] pb-1 transition-all hover:border-[#829056]">
+              <span className="hover:text-[#829056] flex items-center gap-2 transition-colors">
                  Explore Project <ArrowUpRight size={16} />
               </span>
             </button>
@@ -313,7 +309,7 @@ const SelectedWorks = () => {
 
 const ProcessSection = () => {
   return (
-    <section className="py-24 bg-[#2E2623] border-t border-[#CBD2A4]/5 relative z-10">
+    <section className="py-24 bg-[#1c1812] border-t border-[#CBD2A4]/5 relative z-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

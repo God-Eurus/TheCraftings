@@ -6,8 +6,8 @@ interface AboutProps {
 
 export default function About({ onNavigate }: AboutProps) {
   return (
-    // Updated BG to #2E2623, Text to #CBD2A4, Selection to #52640a
-    <div className="w-full pt-24 min-h-screen bg-[#2E2623] text-[#CBD2A4] selection:bg-[#52640a] selection:text-white">
+    // Updated BG to #1c1812, Text to #CBD2A4, Selection to #829056
+    <div className="w-full pt-24 min-h-screen bg-[#1c1812] text-[#CBD2A4] selection:bg-[#829056] selection:text-white">
       
       {/* Inject Fonts locally */}
       <style>{`
@@ -20,12 +20,12 @@ export default function About({ onNavigate }: AboutProps) {
         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-24 space-y-4">
-          {/* Changed accent to #52640a */}
-          <span className="text-[#52640a] font-body text-xs uppercase tracking-[0.2em] font-bold">Est. 2010</span>
+          {/* Accent: #829056 */}
+          <span className="text-[#829056] font-body text-xs uppercase tracking-[0.2em] font-bold">Est. 2010</span>
           <h1 className="font-heading text-5xl md:text-7xl text-white">The Craftings Story</h1>
-          {/* Changed line color to #52640a */}
-          <div className="w-16 h-[1px] bg-[#52640a]/50 my-6"></div>
-          {/* Changed text color to #CBD2A4 */}
+          {/* Line: #829056 */}
+          <div className="w-16 h-[1px] bg-[#829056]/50 my-6"></div>
+          {/* Text: #CBD2A4 */}
           <p className="text-[#CBD2A4]/80 text-lg max-w-2xl font-body font-light leading-relaxed">
             Creating spaces that inspire, endure, and transcend the ordinary.
           </p>
@@ -47,8 +47,8 @@ export default function About({ onNavigate }: AboutProps) {
                 opportunity to craft environments that enhance daily life while reflecting the
                 unique personality of those who inhabit them.
               </p>
-              {/* Changed border color to #52640a */}
-              <div className="border-l border-[#52640a] pl-6 py-2 mt-6">
+              {/* Border: #829056 */}
+              <div className="border-l border-[#829056] pl-6 py-2 mt-6">
                  <p className="italic text-[#CBD2A4]">
                     "We approach each project with fresh eyes, ensuring that no two spaces are ever the same."
                  </p>
@@ -58,8 +58,8 @@ export default function About({ onNavigate }: AboutProps) {
           
           {/* Image with Frame Effect */}
           <div className="order-1 md:order-2 relative group">
-            {/* Changed frame border to #52640a */}
-            <div className="absolute top-4 -right-4 w-full h-full border border-[#52640a]/30 z-0 hidden md:block transition-transform duration-700 group-hover:translate-x-2 group-hover:-translate-y-2"></div>
+            {/* Frame Border: #829056 */}
+            <div className="absolute top-4 -right-4 w-full h-full border border-[#829056]/30 z-0 hidden md:block transition-transform duration-700 group-hover:translate-x-2 group-hover:-translate-y-2"></div>
             <div className="relative z-10 aspect-[4/5] overflow-hidden bg-black/20">
                 <img
                 src="https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -71,8 +71,8 @@ export default function About({ onNavigate }: AboutProps) {
         </div>
 
         {/* Section: Philosophy (Architectural Grid) */}
-        {/* Changed background and borders to match theme */}
-        <div className="border-y border-[#CBD2A4]/10 bg-[#231C1A]/50 mb-32">
+        {/* Contrast BG: #14110d (Slightly darker than main BG) */}
+        <div className="border-y border-[#CBD2A4]/10 bg-[#14110d] mb-32">
           <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#CBD2A4]/10">
             {[
               { title: "Timeless Elegance", desc: "We design spaces that transcend fleeting trends, creating interiors that remain beautiful and relevant for decades." },
@@ -80,8 +80,8 @@ export default function About({ onNavigate }: AboutProps) {
               { title: "Personalized Approach", desc: "Your vision guides our process. We listen, collaborate, and create spaces that are uniquely yours." }
             ].map((item, i) => (
                <div key={i} className="p-10 lg:p-12 hover:bg-[#CBD2A4]/[0.02] transition-colors duration-300">
-                 {/* Number Accent */}
-                 <span className="text-[#52640a]/60 font-heading text-5xl mb-4 block font-bold">0{i+1}</span>
+                 {/* Number Accent: #829056 */}
+                 <span className="text-[#829056]/60 font-heading text-5xl mb-4 block font-bold">0{i+1}</span>
                  <h3 className="font-heading text-2xl mb-4 text-white">{item.title}</h3>
                  <p className="text-[#CBD2A4]/70 font-body text-sm font-light leading-relaxed">
                    {item.desc}
@@ -105,7 +105,7 @@ export default function About({ onNavigate }: AboutProps) {
 
           {/* Founder Text */}
           <div>
-            <span className="text-[#52640a] font-body text-xs uppercase tracking-[0.2em] mb-4 block font-bold">Principal Designers</span>
+            <span className="text-[#829056] font-body text-xs uppercase tracking-[0.2em] mb-4 block font-bold">Principal Designers</span>
             <h2 className="font-heading text-4xl mb-8 text-white">Nitya Kabra / Archana Kabra</h2>
             
             <p className="text-[#CBD2A4]/80 leading-relaxed mb-6 font-body font-light text-sm md:text-base">
@@ -120,7 +120,7 @@ export default function About({ onNavigate }: AboutProps) {
             </p>
 
             <div className="relative p-8 border border-[#CBD2A4]/10 bg-[#CBD2A4]/[0.02]">
-               <Quote className="absolute top-4 left-4 text-[#52640a]/30 w-8 h-8" />
+               <Quote className="absolute top-4 left-4 text-[#829056]/30 w-8 h-8" />
                <p className="text-[#CBD2A4] font-heading text-xl italic relative z-10 text-center">
                  "Interior design is much like a perfect martini: it requires the right balance of ingredients, a touch of chill, and an immaculate presentation."
                </p>
@@ -137,8 +137,8 @@ export default function About({ onNavigate }: AboutProps) {
           </p>
           <button
             onClick={() => onNavigate('Contact')}
-            // Updated Button to match theme
-            className="group inline-flex items-center gap-3 px-10 py-4 bg-[#CBD2A4] text-[#2E2623] hover:bg-[#52640a] hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-widest shadow-lg"
+            // Button: BG Sage, Text Dark, Hover Accent
+            className="group inline-flex items-center gap-3 px-10 py-4 bg-[#CBD2A4] text-[#1c1812] hover:bg-[#829056] hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-widest shadow-lg"
           >
             Get In Touch
             <ArrowRight size={16} />
