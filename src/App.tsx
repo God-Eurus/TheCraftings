@@ -6,6 +6,7 @@ import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home');
@@ -35,7 +36,14 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
-      <main>{renderPage()}</main>
+      
+      <main>
+        {renderPage()}
+      </main>
+      
+      {/* Placed here so it renders on every page */}
+      <WhatsAppButton />
+      
       <Footer />
     </div>
   );
