@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, LayoutTemplate, PenTool, Home } from 'lucide-react';
+import React, { useState } from 'react'; // Added useState
+import { motion, AnimatePresence } from 'framer-motion'; // Added AnimatePresence
+import { ArrowRight, ArrowUpRight, LayoutTemplate, PenTool, Home, Sofa, LampFloor, Utensils, ClipboardCheck } from 'lucide-react'; // Added Sofa
 
 // --- Color Palette ---
 // Main Background: #1c1812 (Very Dark Brown/Black)
@@ -120,8 +120,8 @@ const AtelierPage = () => {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-16 py-6 md:py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              <StatItem number="250+" label="Projects Completed" />
-              <StatItem number="15+" label="Years Experience" />
+              <StatItem number="25+" label="Projects Completed" />
+              <StatItem number="6+" label="Years Experience" />
               <StatItem number="98%" label="Client Satisfaction" />
               
             </div>
@@ -150,27 +150,37 @@ const StatItem = ({ number, label }) => (
   </div>
 );
 
+// --- UPDATED SERVICES SECTION ---
 const ServicesSection = () => {
+  // State to track which card is currently expanded
+  const [activeIdx, setActiveIdx] = useState(null);
+
+  const toggleService = (idx) => {
+    setActiveIdx(activeIdx === idx ? null : idx);
+  };
+
   const services = [
-    {
-      title: "Architectural Planning",
-      desc: "Comprehensive spatial analysis and structural reconfiguration for modern living requirements.",
-      icon: <LayoutTemplate className="w-6 h-6" />
-    },
-    {
-      title: "Interior Styling",
-      desc: "Curating furniture, art, and textiles to create a cohesive narrative within your space.",
-      icon: <PenTool className="w-6 h-6" />
-    },
-    {
-      title: "Renovation Management",
-      desc: "End-to-end project oversight, ensuring craftsmanship meets our exacting standards.",
-      icon: <Home className="w-6 h-6" />
-    }
-  ];
+  {
+    title: "Interior Design / Styling",
+    desc: "Crafting refined, harmonious interiors that blend aesthetics with functionality, bringing your personal style to life with thoughtful detailing.",
+    details: "We blend thoughtful planning, functional layouts, curated materials, and refined aesthetics to create interiors that feel timeless and lived in. Our styling approach adds the final layer of warmth through décor, textures, colors, and accents bringing harmony, character, and soul to every space we craft. With meticulous attention to detail, we ensure every corner tells a story and every home feels uniquely yours.",
+    icon: <LampFloor className="w-6 h-6" /> // BEST FIT for interior styling
+  },
+  {
+    title: "Modular Kitchen",
+    desc: "Curating smart and space-saving kitchen that fit together perfectly, offering style, organization, and easy maintenance. Everything tailored for your needs.",
+    details: "At The Craftings, a modular kitchen is a beautifully planned system of customizable units designed for smart storage, easy accessibility, and seamless daily use crafted to reflect your cooking style and routine.",
+    icon: <Utensils className="w-6 h-6" /> // PERFECT for kitchens
+  },
+  {
+    title: "Renovation Management",
+    desc: "Comprehensive oversight of your renovation project, ensuring flawless execution, quality craftsmanship, and timely delivery.",
+    details: "We serve as your on-site partner, coordinating with contractors, engineers, and suppliers. Timelines, budgets, and design integrity are rigorously maintained, ensuring every detail aligns with your vision.",
+    icon: <ClipboardCheck className="w-6 h-6" /> // Represents management + supervision
+  }
+];
 
   return (
-    // BG: #1c1812
     <section className="py-24 px-6 lg:px-16 max-w-7xl mx-auto bg-[#1c1812] relative z-10">
       <motion.div 
         initial="hidden"
@@ -193,29 +203,56 @@ const ServicesSection = () => {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
-        className="grid md:grid-cols-3 gap-8"
+        className="grid md:grid-cols-3 gap-8 items-start" // items-start ensures cards don't stretch weirdly when one opens
       >
         {services.map((service, idx) => (
           <motion.div 
             key={idx} 
             variants={fadeInUp}
-            // Hover BG: Slightly darker/richer #14110d
-            className="group p-8 border border-[#CBD2A4]/10 bg-[#CBD2A4]/[0.02] hover:bg-[#14110d] transition-colors duration-500 relative overflow-hidden"
+            className="group p-8 border border-[#CBD2A4]/10 bg-[#CBD2A4]/[0.02] hover:bg-[#14110d] transition-colors duration-500 relative overflow-hidden flex flex-col"
           >
-            {/* Accent Line: #829056 */}
-            <div className="absolute top-0 left-0 w-1 h-0 bg-[#829056] group-hover:h-full transition-all duration-500 ease-out" />
+            {/* Accent Line */}
+            <div className={`absolute top-0 left-0 w-1 bg-[#829056] transition-all duration-500 ease-out ${activeIdx === idx ? 'h-full' : 'h-0 group-hover:h-full'}`} />
+            
             <div className="mb-6 text-[#CBD2A4]/80 transition-colors relative z-10">
                <span className="group-hover:text-[#829056] transition-colors">{service.icon}</span>
             </div>
-            <h3 className="font-heading text-2xl mb-4 text-[#CBD2A4] group-hover:text-white transition-colors relative z-10">{service.title}</h3>
-            <p className="font-body text-[#CBD2A4]/60 text-sm leading-relaxed mb-8 group-hover:text-[#CBD2A4]/80 relative z-10">
+            
+            <h3 className="font-heading text-2xl mb-4 text-[#CBD2A4] group-hover:text-white transition-colors relative z-10">
+              {service.title}
+            </h3>
+            
+            <p className="font-body text-[#CBD2A4]/60 text-sm leading-relaxed mb-6 group-hover:text-[#CBD2A4]/80 relative z-10">
               {service.desc}
             </p>
-            <a href="#" className="relative z-10 inline-flex items-center text-xs uppercase tracking-widest text-[#CBD2A4]/50 transition-colors">
-               <span className="group-hover:text-[#829056] flex items-center transition-colors">
-                 Read More <ArrowRight className="ml-2 w-4 h-4" />
+
+            {/* EXPANDABLE CONTENT */}
+            <AnimatePresence>
+              {activeIdx === idx && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="overflow-hidden relative z-10"
+                >
+                  <p className="font-body text-[#CBD2A4] text-sm leading-relaxed mb-6 border-t border-[#CBD2A4]/10 pt-4">
+                    {service.details}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* BUTTON */}
+            <button 
+              onClick={() => toggleService(idx)}
+              className="mt-auto relative z-10 inline-flex items-center text-xs uppercase tracking-widest text-[#CBD2A4]/50 transition-colors hover:text-[#829056] text-left outline-none"
+            >
+               <span className={`flex items-center transition-colors ${activeIdx === idx ? 'text-[#829056]' : 'group-hover:text-[#829056]'}`}>
+                 {activeIdx === idx ? 'Close' : 'Read More'} 
+                 <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${activeIdx === idx ? 'rotate-90' : ''}`} />
                </span>
-            </a>
+            </button>
           </motion.div>
         ))}
       </motion.div>
@@ -251,17 +288,26 @@ const SelectedWorks = () => {
           variants={staggerContainer}
           className="grid md:grid-cols-2 gap-12 mb-24 items-center group"
         >
-          <motion.div variants={imageReveal} className="overflow-hidden relative">
-            <img 
-              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
-              alt="Minimalist Living Room" 
-              className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+          {/* CHANGED: Added max-w-md and mx-auto to constrain width and center */}
+          <motion.div variants={imageReveal} className="overflow-hidden relative max-w-md mx-auto w-full">
+            {/* LOCAL VIDEO 1 */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              // CHANGED: aspect-[4/3] to aspect-[2/3] for a taller height
+              className="w-full aspect-[2/3] object-cover transition-transform duration-700 group-hover:scale-105"
+            >
+              {/* Ensure "project-1.mp4" exists in your public/videos folder */}
+              <source src="/videos/video1.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
           </motion.div>
+
           <motion.div variants={fadeInUp} className="md:pl-8">
-            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Residential</span>
-            <h3 className="font-heading text-white text-4xl mt-3 mb-6">The Obsidian Apartment</h3>
+            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Commercial</span>
+            <h3 className="font-heading text-white text-4xl mt-3 mb-6">The 17:17 Store</h3>
             <p className="font-body text-[#CBD2A4]/70 leading-relaxed mb-8 max-w-md">
               A study in contrast and texture. This project involved transforming a downtown loft into a sanctuary of dark stone, warm wood, and filtered light.
             </p>
@@ -282,8 +328,8 @@ const SelectedWorks = () => {
            className="grid md:grid-cols-2 gap-12 items-center group"
         >
           <motion.div variants={fadeInUp} className="order-2 md:order-1 md:pr-8 md:text-right flex flex-col items-start md:items-end">
-            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Commercial</span>
-            <h3 className="font-heading text-white text-4xl mt-3 mb-6">Aesop's Gallery</h3>
+            <span className="text-xs font-body tracking-widest uppercase text-[#829056]">Residential</span>
+            <h3 className="font-heading text-white text-4xl mt-3 mb-6">The Mathur's Apartment</h3>
             <p className="font-body text-[#CBD2A4]/70 leading-relaxed mb-8 max-w-md">
               Designed to evoke the feeling of an ancient apothecary. We utilized raw plaster and reclaimed oak to create a tactile retail experience.
             </p>
@@ -293,13 +339,22 @@ const SelectedWorks = () => {
               </span>
             </button>
           </motion.div>
-          <motion.div variants={imageReveal} className="order-1 md:order-2 overflow-hidden relative">
-            <img 
-              src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" 
-              alt="Luxury Retail" 
-              className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-             <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+          
+          {/* CHANGED: Added max-w-md and mx-auto to constrain width and center */}
+          <motion.div variants={imageReveal} className="order-1 md:order-2 overflow-hidden relative max-w-md mx-auto w-full">
+             {/* LOCAL VIDEO 2 */}
+             <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              // CHANGED: aspect-[4/3] to aspect-[2/3] for a taller height
+              className="w-full aspect-[2/3] object-cover transition-transform duration-700 group-hover:scale-105"
+            >
+              {/* Ensure "project-2.mp4" exists in your public/videos folder */}
+              <source src="/videos/video2.mp4" type="video/mp4" />
+            </video>
+             <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
           </motion.div>
         </motion.div>
       </div>
@@ -335,7 +390,7 @@ const ProcessSection = () => {
           ].map((step, i) => (
             <motion.div variants={fadeInUp} key={i} className="relative p-6 flex flex-col items-center">
               {/* Number behind text */}
-              <span className="font-heading text-6xl text-black/20 mb-4">{step.num}</span>
+              <span className="font-heading text-6xl text-white/20 mb-4">{step.num}</span>
               <h4 className="text-lg font-body font-medium mb-3 text-[#CBD2A4]">{step.title}</h4>
               <p className="text-[#CBD2A4]/60 text-sm leading-relaxed">{step.txt}</p>
             </motion.div>

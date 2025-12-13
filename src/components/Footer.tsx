@@ -43,15 +43,15 @@ export default function Footer() {
             <div className="space-y-4 text-sm font-body font-light">
               <a href="tel:+15551234567" className="flex items-start gap-3 hover:text-white transition-colors">
                 <Phone size={16} className="mt-1 text-amber-600" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 9024751178 / 8824417755 </span>
               </a>
               <a href="mailto:hello@atelier.com" className="flex items-start gap-3 hover:text-white transition-colors">
                 <Mail size={16} className="mt-1 text-amber-600" />
-                <span>hello@thecraftings.com</span>
+                <span>thecraftings2024@gmail.com</span>
               </a>
               <div className="flex items-start gap-3">
                 <ArrowRight size={16} className="mt-1 text-amber-600" />
-                <span>Mansarovar,<br/>Near Jaipur</span>
+                <span>14 Govind Vihar, Gajsinghpura<br/>Gopalpura Bypass, Jaipur</span>
               </div>
             </div>
           </div>
